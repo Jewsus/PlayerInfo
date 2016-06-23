@@ -10,11 +10,9 @@ namespace PlayerInfo
     {
         public static void Init()
         {
-
             TShockAPI.Commands.ChatCommands.Add(new Command("playerinfo", PlayerInv, "pinv"));
             TShockAPI.Commands.ChatCommands.Add(new Command("playerinfo", PlayerInfo, "pinfo"));
             AddPermission("playerinfo", "trustedadmin");
-
         }
         private static void AddPermission(string permission,
                                            string groupName)
@@ -52,9 +50,7 @@ namespace PlayerInfo
                         args.Player.SendMessage(string.Format("Invalid action: {0}", action), Color.Red);
                         args.Player.SendMessage("Invalid syntax. Proper Syntax: /pinv <player> [ INV <row> | ACC | AMM | ARM ]", Color.Orange);
                     }
-
                 }
-
             }
         }
         private static void showAccArm(CommandArgs args,
@@ -185,8 +181,8 @@ namespace PlayerInfo
             args.Player.SendMessage(string.Format("{0} [Ip:{1}] [Life/Mana: {2}/{3}] [Account: {4}] [Group: {5}]",
                                                       player.Name,
                                                       player.IP,
-                                                      player.FirstMaxHP,
-                                                      player.FirstMaxMP,
+                                                      player.TPlayer.statManaMax,
+                                                      player.TPlayer.statLifeMax,
                                                       player.User.Name,
                                                       player.Group.Name), Color.White);
 
