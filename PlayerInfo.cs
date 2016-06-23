@@ -3,15 +3,13 @@ using System.IO;
 using System;
 using Terraria;
 using TerrariaApi.Server;
+using System.ComponentModel;
 
 namespace PlayerInfo
 {
-
     [ApiVersion(1, 23)]
     public class PlayerInfo : TerrariaPlugin
     {
-
-
         public override void Initialize()
         {
             ServerApi.Hooks.ServerJoin.Register(this, OnJoin);
@@ -25,12 +23,11 @@ namespace PlayerInfo
                 base.Dispose(disposing);
             }
         }
-
-        void OnJoin(int player,
-                     System.ComponentModel.HandledEventArgs eventArgs)
+        void OnJoin(HandledEventArgs eventArgs)
         {
             if (!eventArgs.Handled)
             {
+                int player = 0;
                 TShock.Utils.Broadcast("Joining: " + Main.player[player].name +
                                         "(" + Main.player[player].statLifeMax.ToString() +
                                         "/" + Main.player[player].statManaMax.ToString() + ")", Color.Azure);
@@ -50,7 +47,7 @@ namespace PlayerInfo
 
         public override string Author
         {
-            get { return "_Jon"; }
+            get { return "Jewsus"; }
         }
 
         public override string Description
@@ -60,7 +57,7 @@ namespace PlayerInfo
 
         public override Version Version
         {
-            get { return new Version(1, 0, 1, 3); }
+            get { return new Version(1, 0); }
         }
 
         public PlayerInfo(Main game) : base(game)
